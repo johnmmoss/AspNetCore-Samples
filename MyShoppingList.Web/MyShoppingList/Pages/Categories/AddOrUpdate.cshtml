@@ -1,0 +1,20 @@
+﻿@page "{id}"
+@model MyShoppingList.Pages.Categories.AddOrUpdate
+@{
+}
+
+<h2>New Category</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="CategoryID"/>
+    <div class="form-group">
+        <label asp-for="CategoryViewModel.Name" class="control-label"></label>
+        <input asp-for="CategoryViewModel.Name" class="form-control" />
+        <span asp-validation-for="CategoryViewModel.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        
+        <a asp-page="Index" class="btn btn-danger">Back</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
