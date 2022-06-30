@@ -1,0 +1,8 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
+ENV ASPNETCORE_URLS=http://+:80 
+WORKDIR /app
+COPY ./src .
+RUN dotnet restore
+RUN dotnet publish -c Release -o out 
+WORKDIR /app/out
+ENTRYPOINT ["dotnet", "AspNetWebDocker.dll"]
