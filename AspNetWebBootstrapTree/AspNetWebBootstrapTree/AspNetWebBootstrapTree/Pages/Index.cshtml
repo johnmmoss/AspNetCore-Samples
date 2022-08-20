@@ -1,0 +1,84 @@
+﻿@page
+@model AspNetWebBootstrapTree.Pages.IndexModel
+<div class="row">
+    <div class="row mb-3">
+        <div class="col">
+            <div id="drawing-path">
+                <h3 id="title">Null Island</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div id="drawing-name">
+                <span id="location">0,0</span>
+                <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <div class="tree-view list-group">
+            <a class="list-group-item collapse-indicator collapse-indicator-pos-0 collapsed" data-bs-toggle="collapse" href="#countries">
+                Countries
+            </a>
+            <div id="countries" class="list-group collapse">
+                @for (var i = 0; i < Model.TreeModel.Countries.Count(); i++)
+                {
+                    <a class="list-group-item collapse-indicator  collapse-indicator-pos-1  collapsed" data-bs-toggle="collapse" href="#countries-@i">
+                        @Model.TreeModel.Countries[i].Name
+                    </a>
+                    <div id="countries-@i" class="list-group collapse">
+                        @for (var j = 0; j < Model.TreeModel.Countries[i].Counties.Count(); j++)
+                        {
+                            <a class="list-group-item collapse-indicator collapse-indicator-pos-2 collapsed" data-bs-toggle="collapse" href="#countries-@i-counties-@j">
+                                @Model.TreeModel.Countries[i].Counties[j].Name
+                            </a>
+                            <div id="countries-@i-counties-@j" class="list-group collapse">
+                                @foreach (var city in Model.TreeModel.Countries[i].Counties[j].Cities)
+                                {
+                                    <a class="list-group-item city"
+                                       data-treeview-name="@city"
+                                       data-treeview-location="@Model.TreeModel.Countries[i].Name > @Model.TreeModel.Countries[i].Counties[j].Name > @city">
+                                        <i class="city-icon"></i>
+                                        @city
+                                    </a>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row -4">
+            <iframe
+                id="map"
+                width="600"
+                height="450"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC8tz1bM7zB2PGOPyh5nGaq2upDzQgDi2c&zoom=8&q=Lancashire">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+     $(document).ready(function () {
+        $("#countries").collapse("show");
+        $(".city").click(function () { 
+            var city = $(this).attr("data-treeview-name");
+            var location = $(this).attr("data-treeview-location");
+            $("#map").attr('src', `https://www.google.com/maps/embed/v1/place?key=AIzaSyC8tz1bM7zB2PGOPyh5nGaq2upDzQgDi2c&zoom=8&q=${city}`);
+            $("#title").text(city);
+            $("#location").text(location);
+        });
+     });
+    </script>
+}

@@ -1,0 +1,83 @@
+/* Reset all list items to have just a top border */
+.tree-view .list-group-item {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+    padding: .75rem 0.8rem;
+}
+
+/* Add a border to the top level */
+.tree-view {
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Remove duplicate top border  */
+.tree-view > .list-group-item:first-child {
+    border-top-width: 0;
+}
+
+/* Add padding for nested items */
+.tree-view > .list-group-item {
+    padding-left: 35px;
+}
+
+.tree-view > .list-group > .list-group-item {
+    padding-left: 55px;
+}
+
+.tree-view > .list-group > .list-group > .list-group-item {
+    padding-left: 75px;
+}
+
+.tree-view > .list-group > .list-group > .list-group > .list-group-item {
+    padding-left: 80px;
+}
+
+/* Show +/- images for treeview icons */
+.collapse-indicator {
+    background-image: url(/images/dash.svg);
+    background-repeat: no-repeat;
+}
+
+.collapse-indicator.collapsed {
+    background-image: url(/images/plus.svg);
+}
+
+.collapse-indicator-pos-0 {
+    background-position: 10px 50%;
+}
+
+.collapse-indicator-pos-1 {
+    background-position: 30px 50%;
+}
+
+.collapse-indicator-pos-2 {
+    background-position: 50px 50%;
+}
+
+/* City icon */
+.city-icon {
+    background: url(/images/building.svg) no-repeat center left;
+    padding: 12px;
+}
+
+.city:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/*.imageicon {*/
+/*    background: url(/images/file-image.svg) no-repeat center left;*/
+/*    padding: 12px;*/
+/*}*/
+
+/*.foldericon {*/
+/*    background: url(/images/folder.svg) no-repeat center left;*/
+/*    padding: 12px;*/
+/*}*/
+
+/*.globeicon {*/
+/*    background: url(/images/globe.svg) no-repeat center left;*/
+/*    padding: 12px;*/
+/*}*/
