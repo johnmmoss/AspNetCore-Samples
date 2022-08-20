@@ -62,7 +62,7 @@
                 loading="lazy"
                 allowfullscreen
                 referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC8tz1bM7zB2PGOPyh5nGaq2upDzQgDi2c&zoom=8&q=Lancashire">
+                src="https://www.google.com/maps/embed/v1/place?key=@Model.EmbeddedMapsApiKey&zoom=8&q=0,0">
             </iframe>
         </div>
     </div>
@@ -71,11 +71,12 @@
 @section scripts {
     <script>
      $(document).ready(function () {
+        var key = "@Model.EmbeddedMapsApiKey";
         $("#countries").collapse("show");
         $(".city").click(function () { 
             var city = $(this).attr("data-treeview-name");
             var location = $(this).attr("data-treeview-location");
-            $("#map").attr('src', `https://www.google.com/maps/embed/v1/place?key=AIzaSyC8tz1bM7zB2PGOPyh5nGaq2upDzQgDi2c&zoom=8&q=${city}`);
+            $("#map").attr('src', `https://www.google.com/maps/embed/v1/place?key=${key}&zoom=8&q=${city}`);
             $("#title").text(city);
             $("#location").text(location);
         });
