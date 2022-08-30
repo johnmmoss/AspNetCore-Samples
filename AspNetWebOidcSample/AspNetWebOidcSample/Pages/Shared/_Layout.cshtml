@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Template</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="d-flex justify-content-center mb-3 mt-3">
+        <h1>Simple Template</h1>
+    </div>
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/secure">Secure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/about">About</a>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/moment.js/moment.min.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
