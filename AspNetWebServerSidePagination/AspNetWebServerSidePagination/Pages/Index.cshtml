@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Countries</h1>
+</div>
+
+<div class="mt-5">
+    <table id="countries" class="table">
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Continent</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach(var country in Model.Countries)
+            {
+                <tr>
+                    <td><img title="@country.Code" src="@($"images/flags/{country.Code.ToLower()}.png")"/></td>
+                    <td>@country.Name</td>
+                    <td>@country.Capital</td>
+                    <td>@country.Continent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#countries').DataTable();
+        });
+    </script>
+}
