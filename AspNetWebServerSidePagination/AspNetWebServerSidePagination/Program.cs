@@ -1,3 +1,5 @@
+using DataTables.AspNet.AspNetCore;
+
 namespace AspNetWebServerSidePagination
 {
     public class Program
@@ -8,6 +10,8 @@ namespace AspNetWebServerSidePagination
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddControllers();
+            builder.Services.RegisterDataTables();
 
             var app = builder.Build();
 
@@ -27,6 +31,7 @@ namespace AspNetWebServerSidePagination
             app.UseAuthorization();
 
             app.MapRazorPages();
+            app.MapControllers();
 
             app.Run();
         }

@@ -19,22 +19,25 @@
         </tr>
         </thead>
         <tbody>
-            @foreach(var country in Model.Countries)
-            {
-                <tr>
-                    <td><img title="@country.Code" src="@($"images/flags/{country.Code.ToLower()}.png")"/></td>
-                    <td>@country.Name</td>
-                    <td>@country.Capital</td>
-                    <td>@country.Continent</td>
-                </tr>
-            }
         </tbody>
     </table>
 </div>
 @section scripts {
     <script>
+        
         $(document).ready(function () {
-            $('#countries').DataTable();
+            $('#countries').DataTable({
+                serverSide: true,
+                ajax: {
+                    url: 'filter'
+                },
+                columns: [
+                    { data: "code" },
+                    { data: "name" },
+                    { data: "capital" },
+                    { data: "continent" }
+                ]
+            });
         });
     </script>
 }
