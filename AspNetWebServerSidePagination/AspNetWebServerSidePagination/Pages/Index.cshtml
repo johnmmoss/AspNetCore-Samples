@@ -7,7 +7,6 @@
 <div class="text-center">
     <h1 class="display-4">Countries</h1>
 </div>
-
 <div class="mt-5">
     <table id="countries" class="table">
         <thead>
@@ -22,6 +21,7 @@
         </tbody>
     </table>
 </div>
+
 @section scripts {
     <script>
         
@@ -32,12 +32,22 @@
                     url: 'filter'
                 },
                 columns: [
-                    { data: "code" },
+                    { data: "code", render: getFlagImage },
                     { data: "name" },
                     { data: "capital" },
                     { data: "continent" }
-                ]
+                ],
+                order: [[1, 'desc']],
+                columnDefs: [
+                    { targets: [0], orderable: false }
+                ],
+
             });
+            
+            function getFlagImage(flagCode) {
+                console.log(flagCode)
+                return  `<img src="/images/flags/${flagCode.toLowerCase()}.png" />`;
+            }
         });
     </script>
 }
